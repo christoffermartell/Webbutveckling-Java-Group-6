@@ -18,7 +18,7 @@ public class StudentRespondModel {
     private String lastName;
 
     @Min(1)
-    private int age;
+    private Integer age;
 
     private boolean present;
 
@@ -46,11 +46,11 @@ public class StudentRespondModel {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

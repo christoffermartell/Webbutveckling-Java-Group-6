@@ -5,7 +5,7 @@ public class StudentDto {
     private String studentId;
     private String name;
     private String lastName;
-    private int age;
+    private Integer age;
     private boolean present;
 
     public String getStudentId() {
@@ -32,11 +32,11 @@ public class StudentDto {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

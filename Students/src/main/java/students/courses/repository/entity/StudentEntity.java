@@ -37,7 +37,7 @@ public class StudentEntity {
 
     @Column
     @Min(1)
-    private int age;
+    private Integer age;
 
     @Column
     private boolean present;
@@ -74,11 +74,11 @@ public class StudentEntity {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
