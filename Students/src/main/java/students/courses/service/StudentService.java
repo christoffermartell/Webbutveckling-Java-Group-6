@@ -16,5 +16,5 @@ public interface StudentService {
 
     Optional<StudentDto> updateStudent(String studentId, StudentDto studentDto);
 
-    boolean deleteStudent(String studentId);
+    void deleteStudent(String studentId);
 }

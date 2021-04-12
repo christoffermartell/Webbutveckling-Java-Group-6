@@ -1,8 +1,10 @@
 package students.courses.service.impl;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import students.courses.Util.Utility;
 import students.courses.dto.StudentDto;
 import students.courses.repository.StudentRepository;
@@ -46,10 +48,7 @@ public class StudentServiceImpl implements StudentService {
             BeanUtils.copyProperties(studentEntity,studentDto);
             return studentDto;
         });
-
-
     }
-
 
     public StudentDto createStudent(StudentDto studentDetails) {
 
@@ -63,11 +62,8 @@ public class StudentServiceImpl implements StudentService {
         StudentDto studentDtoOut = new StudentDto();
         BeanUtils.copyProperties(studentEntityOut,studentDtoOut);
 
-
         return studentDtoOut;
     }
-
-
 
     public Optional<StudentDto> updateStudent(String studentId, StudentDto studentDto) {
 
@@ -81,26 +77,25 @@ public class StudentServiceImpl implements StudentService {
             studentEntity.setName(studentDto.getName()!=null ? studentDto.getName() : studentEntity.getName());
             studentEntity.setLastName(studentDto.getLastName()!=null ? studentDto.getLastName() : studentEntity.getLastName());
 
-            /*
-            Not sure how to handle the "present" cuz of boolean and null.. we have to look at this..
-             */
-            // studentEntity.setPresent(studentDto.isPresent() ? studentDto.isPresent() : studentEntity.isPresent());
+            studentEntity.setPresent(studentDto.isPresent() != studentEntity.isPresent()  ? studentDto.isPresent() : studentEntity.isPresent());
 
             studentEntity.setAge(studentDto.getAge()!=null ? studentDto.getAge() : studentEntity.getAge());
 
-                StudentEntity updatedStudentEntity = studentRepository.save(studentEntity);
-                BeanUtils.copyProperties(updatedStudentEntity,response);
+            StudentEntity updatedStudentEntity = studentRepository.save(studentEntity);
+            BeanUtils.copyProperties(updatedStudentEntity,response);
 
-                return response;
+            return response;
         });
 
     }
 
-    @Transactional
-    public boolean deleteStudent(String studentId) {
 
-        Long removedStudentCount = studentRepository.deleteByStudentId(studentId);
+    public void deleteStudent(String studentId) {
+        Optional<StudentEntity> studentExists = studentRepository.findByStudentId(studentId);
 
-            return removedStudentCount >0;
+        if (studentExists.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student doesn't exists");
+        }
+        studentRepository.delete(studentExists.get());
     }
 }

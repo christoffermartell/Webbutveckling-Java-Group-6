@@ -1,11 +1,15 @@
 package students.courses.dto;
 
-public class StudentDto {
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
+public class StudentDto implements Serializable {
 
     private String studentId;
     private String name;
     private String lastName;
     private Integer age;
+    @NotNull
     private boolean present;
 
     public String getStudentId() {

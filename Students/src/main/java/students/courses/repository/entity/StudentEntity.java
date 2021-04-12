@@ -39,8 +39,8 @@ public class StudentEntity {
     @Min(1)
     private Integer age;
 
-    @Column
-    private boolean present;
+    @Column(nullable = false)
+    private boolean present = false;
 
     public long getId() {
         return id;

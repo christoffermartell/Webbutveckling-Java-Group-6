@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface StudentRepository extends CrudRepository<StudentEntity, Long> {
     Optional<StudentEntity> findByStudentId(String studentId);
-    long deleteByStudentId(String studentId);
+
 }
