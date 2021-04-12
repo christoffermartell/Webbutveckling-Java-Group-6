@@ -8,13 +8,13 @@ import java.util.Optional;
 
 public interface StudentService {
 
-    List<StudentEntity> getAllStudents();
+    List<StudentDto> getAllStudents();
 
-    Optional<StudentEntity> getSpecificStudent(String studentId);
+    Optional<StudentDto> getSpecificStudent(String studentId);
 
     StudentDto createStudent(StudentDto studentDetails);
 
     Optional<StudentDto> updateStudent(String studentId, StudentDto studentDto);
 
-    void deleteStudent(String studentId);
+    boolean deleteStudent(String studentId);
 }
