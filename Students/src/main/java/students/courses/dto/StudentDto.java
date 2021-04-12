@@ -1,8 +1,9 @@
 package students.courses.dto;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-public class StudentDto {
+public class StudentDto implements Serializable {
 
     private String studentId;
     private String name;
