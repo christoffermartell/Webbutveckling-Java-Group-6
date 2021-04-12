@@ -3,6 +3,7 @@ package students.courses.model.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class StudentDetailsRequestModel {
@@ -19,7 +20,7 @@ public class StudentDetailsRequestModel {
 
     @Min(1)
     private Integer age;
-
+    @NotNull
     private boolean present;
 
     public String getStudentId() {

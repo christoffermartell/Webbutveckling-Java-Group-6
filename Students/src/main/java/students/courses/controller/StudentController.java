@@ -3,6 +3,7 @@ package students.courses.controller;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import students.courses.dto.StudentDto;
 import students.courses.model.request.StudentDetailsRequestModel;
 import students.courses.model.respond.StudentRespondModel;
@@ -42,25 +43,22 @@ public class StudentController {
 
     @GetMapping(path = "/{studentId}")
     @ResponseStatus(HttpStatus.OK)
-    public StudentRespondModel getSpecificStudent(@PathVariable String studentId) throws Exception {
+    public StudentRespondModel getSpecificStudent(@PathVariable String studentId)  {
 
         StudentRespondModel responseModel = new StudentRespondModel();
         Optional<StudentDto> optionalStudentDto = studentService.getSpecificStudent(studentId);
-        if (optionalStudentDto.isPresent()){
-            StudentDto studentDto = optionalStudentDto.get();
-            BeanUtils.copyProperties(studentDto,responseModel);
-            return responseModel;
+        if (optionalStudentDto.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " The requested student doesn't exist");
         }
-        throw new Exception("No student with id : " + studentId);
-
-
-
+        StudentDto studentDto = optionalStudentDto.get();
+        BeanUtils.copyProperties(studentDto,responseModel);
+        return responseModel;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public StudentRespondModel createStudent(@RequestBody StudentDetailsRequestModel studentDetailsModel) {
-        // insert some create logic here
+
         //Copy json to DtoIn
         StudentDto studentDtoIn = new StudentDto();
         BeanUtils.copyProperties(studentDetailsModel,studentDtoIn);
@@ -75,7 +73,7 @@ public class StudentController {
 
     @PutMapping(path = "/{studentId}")
     @ResponseStatus(HttpStatus.OK)
-    public StudentRespondModel updateStudent(@PathVariable String studentId, @RequestBody StudentDetailsRequestModel studentDetails) throws Exception {
+    public StudentRespondModel updateStudent(@PathVariable String studentId, @RequestBody StudentDetailsRequestModel studentDetails) {
         // insert update logic here, maybe do this as the last function in spring. I can assist here if needed /Jocke
 
         StudentDto studentDtoIn = new StudentDto();
@@ -83,7 +81,7 @@ public class StudentController {
 
         Optional<StudentDto> studentDtoOut = studentService.updateStudent(studentId,studentDtoIn);
         if (studentDtoOut.isEmpty()){
-            throw new Exception("No student with id : " + studentId);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " please enter a value to update student.");
         }
         StudentDto studentDto = studentDtoOut.get();
         StudentRespondModel responseModel = new StudentRespondModel();
@@ -93,14 +91,7 @@ public class StudentController {
     }
 
     @DeleteMapping(path = "/{studentId}")
-    public String deleteStudent(@PathVariable String studentId) throws Exception {
-        // I can assist here if needed /Jocke
-        boolean deleted = studentService.deleteStudent(studentId);
-        if (deleted){
-            return "";
-        }
-        throw new Exception("No student with id : " + studentId);
+    public void deleteStudent(@PathVariable String studentId){
+       studentService.deleteStudent(studentId);
     }
-
-
 }

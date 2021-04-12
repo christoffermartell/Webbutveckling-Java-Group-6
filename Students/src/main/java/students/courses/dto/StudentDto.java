@@ -1,11 +1,14 @@
 package students.courses.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class StudentDto {
 
     private String studentId;
     private String name;
     private String lastName;
     private Integer age;
+    @NotNull
     private boolean present;
 
     public String getStudentId() {
