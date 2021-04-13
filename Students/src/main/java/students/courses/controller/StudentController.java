@@ -26,7 +26,7 @@ public class StudentController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<StudentRespondModel> getAllStudents() {
+    public List<StudentRespondModel> getAllStudents() {
 
         List<StudentDto> studentDtos = studentService.getAllStudents();
         ArrayList<StudentRespondModel> responseList = new ArrayList<>();
