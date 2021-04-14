@@ -23,6 +23,20 @@ const App = () => {
 		}
 	}
 
+	const updatePresence = async (student, isChecked) => {
+		const response = await fetch(`http://localhost:8080/students/${student.student_id}`, {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				present: isChecked
+			})
+		})
+
+		if (response.ok) {
+			console.log("Presence successfully changed.");
+		}
+	}
+
 	useEffect(() => {
 		const fetchStudents = async () => {
 			const response = await fetch(studentsUrl);
@@ -40,7 +54,7 @@ const App = () => {
 			return (
 				<div className="wrapper">
 					<Title setView={setView} />
-					<Students students={students} deleteStudent={deleteStudent} />
+					<Students students={students} deleteStudent={deleteStudent} updatePresence={updatePresence} />
 					<CreateStudent studentsUrl={studentsUrl} setStudents={setStudents} />
 				</div>
 			);
