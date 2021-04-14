@@ -23,12 +23,12 @@ const App = () => {
 		}
 	}
 
-	const updatePresence = async (student) => {
+	const updatePresence = async (student, isChecked) => {
 		const response = await fetch(`http://localhost:8080/students/${student.student_id}`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				present: !student.present
+				present: isChecked
 			})
 		})
 

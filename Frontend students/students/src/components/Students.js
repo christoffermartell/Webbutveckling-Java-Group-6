@@ -4,6 +4,11 @@ const Students = (props) => {
 	const students = props.students;
 	console.log(students);
 
+	const handleUpdatePresence = (e, student) => {
+		const isChecked = e.target.checked;
+		props.updatePresence(student, isChecked);
+	}
+
 	return (
 		<>
 			<ul>
@@ -25,7 +30,7 @@ const Students = (props) => {
 									type="checkbox"
 									defaultChecked={student.present}
 									id={student.id}
-									onChange={() => props.updatePresence(student)}
+									onChange={(e) => handleUpdatePresence(e, student)}
 								></input>
 								Present
 							</label>
