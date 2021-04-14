@@ -26,6 +26,9 @@ const CreateStudent = (props) => {
 			}
 			const createdStudent = await response.json();
 			props.setStudents((prevStudents) => [...prevStudents, createdStudent]);
+			setName("");
+			setLastName("");
+			setAge(5);
 		};
 
 		createStudent();

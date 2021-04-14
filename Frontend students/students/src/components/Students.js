@@ -23,8 +23,9 @@ const Students = (props) => {
 								<input
 									className="input-checkbox"
 									type="checkbox"
-									checked={student.present}
+									defaultChecked={student.present}
 									id={student.id}
+									onChange={() => props.updatePresence(student)}
 								></input>
 								Present
 							</label>
