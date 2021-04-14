@@ -58,8 +58,8 @@ li .btn {
 form {
 	background-color: white;
 	width: 400px;
-
-	padding: 20px;
+	height: auto;
+	padding: 30px;
 	margin: 0px auto 50px;
 }
 
@@ -87,4 +87,16 @@ form .btn {
 }
 .input-checkbox {
 	float: left;
+}
+#deleteBtn {
+	float: right;
+	margin-right: 50px;
+}
+#editBtn {
+	float: left;
+	margin-left: 50px;
+}
+#updateText {
+	margin-top: 0px;
+	margin-bottom: 10px;
 }

@@ -82,14 +82,16 @@ const CreateStudent = (props) => {
 					</label>
 				</div>
 
-				<label htmlFor="present">Present</label>
-				<input
-					type="checkbox"
-					id="present"
-					name="present"
-					onChange={(e) => setChecked(!checked)}
-					value={checked}
-				></input>
+				<label htmlFor="present">
+					Present{" "}
+					<input
+						type="checkbox"
+						id="present"
+						name="present"
+						onChange={(e) => setChecked(!checked)}
+						value={checked}
+					></input>
+				</label>
 
 				<button className="btn" type="submit">
 					Save

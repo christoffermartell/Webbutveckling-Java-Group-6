@@ -2,12 +2,22 @@ import React from "react";
 
 const Students = (props) => {
 	const students = props.students;
-	console.log(students);
-
+	// koden nedanför försökte jag göra efter hur jag hanterar URL i App metoderna, men kan ses över imorgon
+	/*	const { name, lastName, age, present } = {
+		name: students.name,
+		lastName: students.last_name,
+		age: students.age,
+		present: students.present,
+	};
+*/
 	const handleUpdatePresence = (e, student) => {
 		const isChecked = e.target.checked;
 		props.updatePresence(student, isChecked);
-	}
+	};
+	const linkHandler = (student) => {
+		props.setSpecificStudent(student);
+		props.setView("editUpdate");
+	};
 
 	return (
 		<>
@@ -15,15 +25,16 @@ const Students = (props) => {
 				{students.map((student, i) => {
 					return (
 						<li key={i}>
-							<p>
+							<a href="#" onClick={() => linkHandler(student)}>
 								{student.name} {student.last_name}{" "}
-								<button
-									className="btn"
-									onClick={() => props.deleteStudent(student)}
-								>
-									X
-								</button>
-							</p>
+							</a>
+							<button
+								className="btn"
+								onClick={() => props.deleteStudent(student)}
+							>
+								X
+							</button>
+
 							<label id="labelId" htmlFor={student.id}>
 								<input
 									className="input-checkbox"
