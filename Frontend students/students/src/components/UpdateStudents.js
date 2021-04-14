@@ -1,10 +1,13 @@
 import React from "react";
 
-const UpdateStudents = () => {
+const UpdateStudents = (props) => {
+	const clickHandler = () => {
+		props.setView("startPage");
+	};
 	return (
 		<div className="wrapper">
 			<form>
-				<h2>Här kan du ändra eller radera studenter</h2>
+				<h2 onClick={() => clickHandler()}>Här kan du ändra eller radera studenter</h2>
 				<div>
 					<span className="labelTextInSpan">
 						<label>Name</label>
