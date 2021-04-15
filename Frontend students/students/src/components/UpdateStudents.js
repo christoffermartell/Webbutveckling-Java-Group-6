@@ -25,7 +25,7 @@ const UpdateStudents = (props) => {
 		<div className="wrapper">
 			<form onSubmit={() => editHandler()}>
 				<h2 id="updateText" onClick={() => clickHandler()}>
-					Edit or delete Student
+					Edit or delete {studentName}
 				</h2>
 				<div className="divCreateStudent">
 					<label>
@@ -73,13 +73,21 @@ const UpdateStudents = (props) => {
 					></input>
 					Present
 				</label>
-				<button className="btn" id="editBtn" type="submit">
+				<button
+					className="btn"
+					id="editBtn"
+					type="submit"
+					//
+				>
 					Edit
 				</button>
 				<button
 					className="btn"
 					id="deleteBtn"
-					onClick={() => props.deleteStudentInEdit(studentId)}
+					onClick={() =>
+						props.deleteStudent(props.specificStudent) &&
+						props.setView("startPage")
+					}
 				>
 					Delete
 				</button>

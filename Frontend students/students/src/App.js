@@ -21,24 +21,7 @@ const App = () => {
 	}, [students]);
 
 	const deleteStudent = async (student) => {
-		const response = await fetch(
-			`http://localhost:8080/students/${student.student_id}`,
-			{
-				method: "DELETE",
-				headers: { "Content-Type": "application/json" },
-			}
-		);
-
-		if (response.ok) {
-			setStudents((prevStudents) => {
-				return prevStudents.filter(
-					(prevStudent) => prevStudent !== student.student_id
-				);
-			});
-		}
-	};
-
-	const deleteStudentInEdit = async (studentId) => {
+		const studentId = student.student_id;
 		const response = await fetch(
 			`http://localhost:8080/students/${studentId}`,
 			{
@@ -96,7 +79,7 @@ const App = () => {
 				<UpdateStudents
 					setView={setView}
 					specificStudent={specificStudent}
-					deleteStudentInEdit={deleteStudentInEdit}
+					deleteStudent={deleteStudent}
 					updateStudent={updateStudent}
 				/>
 			);

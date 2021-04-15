@@ -61,6 +61,7 @@ form {
 	height: auto;
 	padding: 30px;
 	margin: 0px auto 50px;
+	padding-bottom: 40px;
 }
 
 form .form-title {
@@ -79,14 +80,11 @@ form .btn {
 }
 #labelId {
 	float: right;
-	margin-right: 50px;
+	margin-right: 10px;
 }
 .divCreateStudent {
 	width: 100%;
 	margin-bottom: 12px;
-}
-.input-checkbox {
-	float: left;
 }
 #deleteBtn {
 	float: right;

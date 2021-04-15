@@ -6,7 +6,7 @@ const Title = (props) => {
 	};
 	return (
 		<>
-			<header onClick={() => clickHandler()}>Välkommen</header>
+			<header onClick={() => clickHandler()}>Kursnärvaro</header>
 		</>
 	);
 };
