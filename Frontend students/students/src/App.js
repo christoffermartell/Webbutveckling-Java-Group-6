@@ -18,7 +18,7 @@ const App = () => {
 			setStudents(students);
 		};
 		fetchStudents();
-	}, [students]);
+	}, []);
 
 	const deleteStudent = async (student) => {
 		const studentId = student.student_id;
@@ -81,6 +81,7 @@ const App = () => {
 					specificStudent={specificStudent}
 					deleteStudent={deleteStudent}
 					updateStudent={updateStudent}
+					setStudents={setStudents}
 				/>
 			);
 

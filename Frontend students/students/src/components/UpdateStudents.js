@@ -86,7 +86,8 @@ const UpdateStudents = (props) => {
 					id="deleteBtn"
 					onClick={() =>
 						props.deleteStudent(props.specificStudent) &&
-						props.setView("startPage")
+						props.setView("startPage") &&
+						props.setStudents((prevStudents) => [...prevStudents, props.specificStudent])
 					}
 				>
 					Delete
